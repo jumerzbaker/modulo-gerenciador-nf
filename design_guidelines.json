@@ -1,0 +1,142 @@
+{
+  "app_metadata": {
+    "name": "NFeStock - Módulo de Importação de Compras & SEFAZ",
+    "description": "Sistema de gestão de compras e importação automática de NF-e via SEFAZ com Certificado Digital A1, importação XML e lançamento manual de compras integrado ao estoque.",
+    "language": "pt-BR",
+    "archetype": "SWISS_HIGH_CONTRAST_TACTICAL_DASHBOARD",
+    "theme_mode": "light_and_dark_toggle"
+  },
+  "typography": {
+    "heading_font": "Space Grotesk, Plus Jakarta Sans, sans-serif",
+    "body_font": "Inter, system-ui, sans-serif",
+    "mono_font": "JetBrains Mono, Fira Code, monospace",
+    "hierarchy": {
+      "h1": "text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100",
+      "h2": "text-xl sm:text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100",
+      "h3": "text-lg font-semibold text-slate-800 dark:text-slate-200",
+      "h4": "text-base font-medium text-slate-800 dark:text-slate-200",
+      "body": "text-sm text-slate-600 dark:text-slate-300 leading-relaxed",
+      "small": "text-xs font-medium text-slate-500 dark:text-slate-400",
+      "code": "font-mono text-xs px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700"
+    }
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "main": "#0f172a",
+        "hover": "#1e293b",
+        "light": "#334155",
+        "foreground": "#ffffff"
+      },
+      "brand_accent": {
+        "emerald": "#10b981",
+        "emerald_dark": "#059669",
+        "blue": "#2563eb",
+        "amber": "#d97706",
+        "rose": "#e11d48"
+      },
+      "background": {
+        "light_default": "#f8fafc",
+        "light_surface": "#ffffff",
+        "light_subtle": "#f1f5f9",
+        "dark_default": "#090d16",
+        "dark_surface": "#111827",
+        "dark_subtle": "#1f2937"
+      },
+      "borders": {
+        "light": "#e2e8f0",
+        "light_accent": "#cbd5e1",
+        "dark": "#1f2937",
+        "dark_accent": "#374151"
+      },
+      "status": {
+        "sefaz_resumo": "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800",
+        "sefaz_xml_completo": "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800",
+        "sefaz_importada": "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800",
+        "sefaz_manifestada": "bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950/40 dark:text-purple-300 dark:border-purple-800",
+        "cert_valid": "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400",
+        "cert_warning": "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-400",
+        "cert_expired": "bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/40 dark:text-rose-400"
+      }
+    }
+  },
+  "layout_and_spacing": {
+    "grid_system": "MODE B - High Density Admin Dashboard Grid",
+    "card_padding": "p-5 sm:p-6",
+    "section_gap": "space-y-6 sm:space-y-8",
+    "table_density": "compact with px-4 py-3 per cell",
+    "header_style": "Sticky z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800"
+  },
+  "key_modules_and_pages": [
+    {
+      "id": "login",
+      "name": "Autenticação / Login",
+      "description": "Tela de login profissional com suporte a e-mail e senha (JWT), alternância de ambiente SEFAZ e design corporativo limpo."
+    },
+    {
+      "id": "dashboard",
+      "name": "Painel de Controle (Dashboard)",
+      "description": "Métricas principais: Notas SEFAZ Pendentes, Compras do Mês (R$), Total de Produtos em Estoque, Status do Certificado A1, Gráfico de Compras por Mês/Fornecedor, Feed de Últimas Sincronizações e Ações Rápidas."
+    },
+    {
+      "id": "sefaz_notes",
+      "name": "Notas SEFAZ (Consulta Automática)",
+      "description": "Tabela interativa com busca, filtros por status (Resumo, XML Completo, Importada, Manifestada), botão 'Sincronizar Agora com SEFAZ', Ação de 'Manifestação de Ciência da Operação' e 'Revisar & Importar'."
+    },
+    {
+      "id": "xml_import",
+      "name": "Importação via XML",
+      "description": "Área de Drag-and-Drop para múltiplos arquivos .xml de NF-e, pré-visualização de validação e atalho direto para a Tela de Mapeamento/Importação."
+    },
+    {
+      "id": "manual_purchase",
+      "name": "Compra Manual",
+      "description": "Formulário estruturado com seleção de fornecedor (ou cadastro rápido), número da nota/recibo, data de emissão, data de entrada, e tabela editável de itens com cálculo automático de subtotal e total."
+    },
+    {
+      "id": "import_review",
+      "name": "Revisão e Mapeamento de Itens da Nota",
+      "description": "Interface chave: tabela de itens do XML/SEFAZ com busca/combobox para vincular ao produto existente no estoque ou acionar 'Criar Novo Produto', além de fator de conversão de unidade (ex: caixa com 12 -> 12 un) e projeção de atualização do estoque."
+    },
+    {
+      "id": "purchases_history",
+      "name": "Histórico de Compras",
+      "description": "Listagem de todas as compras efetuadas/importadas com detalhes expandíveis, itens da compra, fornecedor, chave de acesso de 44 dígitos da NF-e e download de XML."
+    },
+    {
+      "id": "products_list",
+      "name": "Cadastro de Produtos e Estoque",
+      "description": "Lista de produtos cadastrados com quantidade atual em estoque, código de barras/SKU, custo médio, preço de venda, alerta de estoque mínimo e modal de CRUD."
+    },
+    {
+      "id": "suppliers_list",
+      "name": "Cadastro de Fornecedores",
+      "description": "Tabela e cards de fornecedores com CNPJ, Razão Social, IE, UF, Contato, total de compras realizadas e histórico vinculado."
+    },
+    {
+      "id": "settings",
+      "name": "Configurações da Empresa & Certificado A1",
+      "description": "Configuração do CNPJ da empresa do marido, UF da SEFAZ, Seleção de Ambiente (Homologação / Produção), Upload do Certificado Digital A1 (.pfx) com senha e indicador de validade, além do Log de Comunicação SEFAZ."
+    }
+  ],
+  "image_urls": {
+    "warehouse_banner": "https://images.unsplash.com/photo-1645736315000-6f788915923b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwyfHxsb2dpc3RpY3MlMjB3YXJlaG91c2UlMjBpbnZlbnRvcnklMjBzdXBwbHklMjBjaGFpbnxlbnwwfHx8fDE3OTA2MjAyOTh8MA&ixlib=rb-4.1.0&q=85",
+    "warehouse_shelves": "https://images.unsplash.com/photo-1592085198739-ffcad7f36b54?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxsb2dpc3RpY3MlMjB3YXJlaG91c2UlMjBpbnZlbnRvcnklMjBzdXBwbHklMjBjaGFpbnxlbnwwfHx8fDE3OTA2MjAyOTh8MA&ixlib=rb-4.1.0&q=85",
+    "user_avatar": "https://images.unsplash.com/photo-1507206130118-b5907f817163?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBidXNpbmVzcyUyMHByb2Zlc3Npb25hbCUyMHdvcmtlcnxlbnwwfHx8fDE3OTA2MjAzMDF8MA&ixlib=rb-4.1.0&q=85"
+  },
+  "instructions_to_main_agent": {
+    "file_type_handling": "This project uses .js and .jsx files. Do not create .tsx files unless explicitly configured.",
+    "ui_language": "Brazilian Portuguese (pt-BR) for all UI titles, buttons, status labels, tooltips, toasts and tables.",
+    "toast_notifications": "Use 'sonner' for all user action feedback (e.g., 'Sincronização iniciada com a SEFAZ', 'Produto mapeado com sucesso', 'Certificado Digital A1 carregado').",
+    "theme_implementation": "Ensure dark and light mode toggle works seamlessly using standard CSS variables and Tailwind dark: classes.",
+    "interactive_components": "Use Shadcn components for Dropdowns, Dialogs, Selects, Tooltips, Accordions, Tabs and Popovers. Custom styling applied with Tailwind CSS.",
+    "data_test_ids": "CRITICAL: Every button, input, tab, table row action, modal trigger, card metric and status badge MUST have a data-testid attribute in kebab-case (e.g. data-testid='sefaz-sync-button', data-testid='product-mapping-select-1')."
+  },
+  "GENERAL_UI_UX_DESIGN_GUIDELINES": [
+    "Always provide immediate tactile feedback on buttons with active:scale-[0.98] and hover state transitions.",
+    "Borders must be crisp (1px border-slate-200 dark:border-slate-800) with subtle contrast against background surfaces.",
+    "Never use fully transparent backgrounds on overlays, sticky headers, or dropdowns. Use backdrop-blur with semi-opaque backgrounds.",
+    "In forms and mapping tables, always show human-readable input validation, auto-calculations, and visual indicator icons for mapped vs unmapped items.",
+    "Ensure total readability in dark mode with APCA high-contrast text shades (slate-100, slate-200, slate-300)."
+  ]
+}

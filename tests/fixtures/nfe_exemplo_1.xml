@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00"><NFe><infNFe Id="NFe35260612345678000195550010000012341000012345" versao="4.00">
+<ide><cUF>35</cUF><natOp>VENDA</natOp><mod>55</mod><serie>1</serie><nNF>1234</nNF><dhEmi>2026-06-01T10:00:00-03:00</dhEmi></ide>
+<emit><CNPJ>12345678000195</CNPJ><xNome>DISTRIBUIDORA ALFA LTDA</xNome><xFant>Distribuidora</xFant><enderEmit><xMun>Sao Paulo</xMun><UF>SP</UF></enderEmit><IE>123456789</IE></emit>
+<dest><CNPJ>11222333000181</CNPJ><xNome>EMPRESA DESTINO</xNome></dest>
+<det nItem="1"><prod><cProd>A100</cProd><cEAN>7891000100103</cEAN><xProd>CAFE TORRADO 500G</xProd><NCM>09012100</NCM><CFOP>5102</CFOP><uCom>CX</uCom><qCom>2.0000</qCom><vUnCom>120.00</vUnCom><vProd>240.00</vProd></prod></det><det nItem="2"><prod><cProd>A200</cProd><cEAN>SEM GTIN</cEAN><xProd>ACUCAR REFINADO 1KG</xProd><NCM>17019900</NCM><CFOP>5102</CFOP><uCom>UN</uCom><qCom>10.0000</qCom><vUnCom>4.50</vUnCom><vProd>45.00</vProd></prod></det><det nItem="3"><prod><cProd>A300</cProd><cEAN>7891000300305</cEAN><xProd>LEITE INTEGRAL 1L</xProd><NCM>04012010</NCM><CFOP>5102</CFOP><uCom>UN</uCom><qCom>12.0000</qCom><vUnCom>5.25</vUnCom><vProd>63.00</vProd></prod></det>
+<total><ICMSTot><vProd>348.00</vProd><vFrete>0.00</vFrete><vDesc>0.00</vDesc><vNF>348.00</vNF></ICMSTot></total>
+</infNFe></NFe></nfeProc>
