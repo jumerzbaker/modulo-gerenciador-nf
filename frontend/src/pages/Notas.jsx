@@ -37,7 +37,7 @@ function SyncBar({ settings, onSynced }) {
     <Card className="mb-6 flex flex-col gap-3 p-4 sm:flex-row sm:items-center" data-testid="sefaz-sync-bar">
       <Landmark className="hidden h-5 w-5 text-emerald-600 sm:block" />
       <div className="flex-1 text-sm">
-        <p className="font-medium">CNPJ {fmtCnpj(settings?.cnpj) || "não configurado"} · {settings?.ambiente === 2 ? "Homologação" : "Produção"}</p>
+        <p className="font-medium">CNPJ {settings?.cnpj ? fmtCnpj(settings.cnpj) : "não configurado"} · {settings?.ambiente === 2 ? "Homologação" : "Produção"}</p>
         <p className="text-xs text-muted-foreground" data-testid="sefaz-sync-info">
           Última consulta: {fmtDateTime(settings?.last_sync_at)}
           {settings?.next_sync_at && ` · Próxima permitida: ${fmtDateTime(settings.next_sync_at)}`}
@@ -138,7 +138,7 @@ export default function Notas() {
   const count = (k) => (FILTERS[k] ? docs.filter((d) => FILTERS[k].includes(d.status)).length : docs.length);
 
   return (
-    <div data-testid="notas-page">
+    <div data-testid="notas-page" className="min-w-0">
       <PageHeader eyebrow="Caixa de entrada fiscal" title="Notas fiscais"
         description="NF-e emitidas contra o CNPJ da empresa (SEFAZ) e XMLs enviados. Revise os itens e dê entrada no estoque." />
       <SyncBar settings={settings} onSynced={load} />
@@ -148,7 +148,7 @@ export default function Notas() {
         </p>
       )}
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <Tabs value={filter} onValueChange={setFilter}>
+        <Tabs value={filter} onValueChange={setFilter} className="max-w-full overflow-x-auto">
           <TabsList>
             {[["pendentes", "Pendentes"], ["importada", "Importadas"], ["outras", "Ignoradas/Canceladas"], ["todas", "Todas"]].map(([k, l]) => (
               <TabsTrigger key={k} value={k} data-testid={`notas-tab-${k}`}>{l} <span className="ml-1.5 text-xs opacity-60">{count(k)}</span></TabsTrigger>

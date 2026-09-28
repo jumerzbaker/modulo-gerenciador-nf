@@ -80,13 +80,13 @@ class SefazClient:
                 r = requests.post(url, data=xml, cert=(cert_f.name, key_f.name), timeout=(15, 90),
                                   headers={"Content-Type": "application/soap+xml; charset=utf-8"})
             except requests.RequestException as e:
-                raise HTTPException(502, f"Falha de comunicação com a SEFAZ: {type(e).__name__}")
+                raise HTTPException(400, f"Falha de comunicação com a SEFAZ: {type(e).__name__}")
             if r.status_code == 403:
-                raise HTTPException(502, "A SEFAZ recusou o certificado (HTTP 403). Use um e-CNPJ A1 ICP-Brasil válido.")
+                raise HTTPException(400, "A SEFAZ recusou o certificado (HTTP 403). Use um e-CNPJ A1 ICP-Brasil válido.")
             try:
                 return etree.fromstring(r.content)
             except etree.XMLSyntaxError:
-                raise HTTPException(502, f"Resposta inválida da SEFAZ (HTTP {r.status_code})")
+                raise HTTPException(400, f"Resposta inválida da SEFAZ (HTTP {r.status_code})")
         finally:
             for f in (cert_f.name, key_f.name):
                 try:
@@ -106,7 +106,7 @@ class SefazClient:
         ret = resp.xpath("//*[local-name()='retDistDFeInt']")
         if not ret:
             fault = resp.xpath("string(//*[local-name()='Text' or local-name()='faultstring'])")
-            raise HTTPException(502, f"SEFAZ retornou erro: {fault or 'resposta inesperada'}")
+            raise HTTPException(400, f"SEFAZ retornou erro: {fault or 'resposta inesperada'}")
         ret = ret[0]
         t = lambda n: ret.xpath(f"string(./*[local-name()='{n}'])")
         out = {"cStat": int(t("cStat") or 0), "xMotivo": t("xMotivo"), "ultNSU": int(t("ultNSU") or 0),
@@ -303,7 +303,7 @@ async def run_sync(force: bool = False) -> dict:
                 except HTTPException as e:
                     logger.warning("Falha na manifestação %s: %s", doc["chave"], e.detail)
         if last["cStat"] not in (137, 138):
-            raise HTTPException(502, f"SEFAZ: {last['cStat']} - {last['xMotivo']}")
+            raise HTTPException(400, f"SEFAZ: {last['cStat']} - {last['xMotivo']}")
         return {"cstat": last["cStat"], "motivo": last["xMotivo"], "documentos": total_docs,
                 "manifestadas": manifested, "ult_nsu": ult}
 
